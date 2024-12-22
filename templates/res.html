@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources Recommendation for {{topic}}</title>
+    <link rel="stylesheet" href="/static/brook.css">
+</head>
+<body>
+    <h1 id="name">Find Resources for Your Topic</h1>
+    <form method="POST">
+        <input type="text" name="topic" placeholder="Enter a topic..." value="{{ topic or '' }}" required>
+        <button type="submit" id="submit1">Fetch Resources</button>
+    </form>
+    
+    {% if resources %}
+        <h2>Resources for "{{ topic }}":</h2>
+        <div>
+            {% for resource in resources %}
+                <div id="res_out_div">
+                    <p><strong>Name: </strong> {{ resource.name }}</p>
+                    <p><strong>Link: </strong> <a href="{{ resource.link }}" target="_blank">{{ resource.link }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {% if topic %}
+            <p>No resources found for "{{ topic }}".</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

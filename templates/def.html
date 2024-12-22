@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Get Definition</title>
+        <link rel="stylesheet" href="/static/brook.css">
+    </head>
+    <body>
+        <h1>GET INFO</h1>
+        <p id="first_p">
+            This page provides detailed and reliable information about the topics you wish to explore. 
+            Simply search for your desired subject, and dive into comprehensive explanations, key insights, and curated resources designed to enhance your understanding. 
+            Whether you're a student, professional, or just curious, we've got you covered with everything you need to learn efficiently and effectively.
+        </p>
+        <form id="form_def" action="/def" method="POST">
+            <label for="topic">Enter a topic:</label>
+            <input id="defin" name="topic" type="text" placeholder="Ex: Machine leanring" required>
+            <button id="submit1" type="submit">Search</button>
+        </form>
+        <div id="def_out">
+            {% if topic %}
+                <h2>Result for "{{ topic }}"</h2>
+                {% if content %}
+                    {% for item in content %}
+                        {% if item.type == "paragraph" %}
+                            <p>{{ item.text }}</p>
+                        {% elif item.type == "list" %}
+                            <ul>
+                                {% for point in item.points %}
+                                    <li>{{ point }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p>No definition found for the topic "{{ topic }}".</p>
+                {% endif %}
+            {% endif %}
+        </div>
+        <a id="home_link" href="/">Go back to Home</a>
+    </body>
+</html>

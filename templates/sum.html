@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="/static/brook.css">
+</head>
+<body>
+    <h1 id="name">Summarize Your Text</h1>
+    <p id="first_p">
+        Welcome to our Text Summarizer tool! This platform is designed to help you effortlessly create concise summaries of your text. Whether you are working on a lengthy article, a detailed report, or just a block of text, simply input or paste your content into the provided text box. Specify the number of sentences you'd like the summary to include, and let our tool transform your input into a clear and precise summary. Save time and effort while maintaining the essence of your text, making this an ideal solution for students, professionals, and anyone in need of a quick text summary.
+    </p>    
+
+    <!-- Essay Input Section -->
+    <label for="essay">Write or paste your text:</label>
+    <div id="essay_input_div">
+        <form action="/sum" method="POST">
+            <div id="essay_div">
+                <textarea id="text_in" name="text" rows="10" cols="50" placeholder="Enter your text here..." required></textarea>
+            </div>
+            
+            <label for="num_sentences">Number of sentences for the summary:</label>
+            <input id="num_sentences" name="num_sentences" type="number" min="1" max="10" value="3" required>
+            
+            <!-- Submit Button -->
+            <button id="submit1" type="submit">Summarize</button>
+        </form>
+    </div>
+
+    <!-- Summary Output Section -->
+    <div id="essay_out">
+        {% if summary %}
+            <h2>Summary</h2>
+            <p>{{ summary }}</p>
+        {% endif %}
+    </div>
+
+    <a id="home_link" href="/">Go back to Home</a>
+</body>
+</html>

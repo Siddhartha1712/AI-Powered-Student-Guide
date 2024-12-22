@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Roadmap</title>
+    <link rel="stylesheet" href="/static/brook.css">
+</head>
+<body>
+    <h1 id="name">Generate Roadmap</h1>
+    <p id="first_p">
+        This page provides detailed and reliable roadmaps for computer science-related topics.
+        From foundational concepts to advanced subjects, explore structured pathways designed to simplify your learning journey.
+        Whether you're diving into algorithms, machine learning, or software development, this tool will guide you step by step.
+    </p>
+    
+    
+    <div id="def_in_div">
+        <form method="POST">
+            <label for="defin">Enter a topic :</label>
+            <input id="defin" type="text" name="topic" required>
+            <button id="submit1" type="submit">Search</button>
+        </form>
+    </div>
+    <div>
+        {% if content %}
+            <h2>Roadmap for "{{ topic }}":</h2>
+            <pre id="rod_out">
+{% for line in content %}
+{{ line }}
+{% endfor %}
+            </pre>
+        {% else %}
+            <p id="def_out">Enter a topic to generate its roadmap.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
